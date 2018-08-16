@@ -6,7 +6,6 @@
 package proyectoh;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JButton;
@@ -14,7 +13,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 /**
  *
@@ -22,20 +20,20 @@ import javax.swing.JTextField;
  */
 public class Loginp {
 
-    JLabel mal = new JLabel("");
+    JLabel mal = new JLabel("Ingrese La Contraseña");
     JPasswordField password = new JPasswordField("Password");
-    JTextField user = new JTextField("User");
+    
     boolean primero = true;
     boolean primero2 = true;
 
     public Loginp() {
 
-        JFrame lgn = new JFrame("Ingresa tu usuario y contraseña");
+        JFrame lgn = new JFrame("Ingresa la contraseña");
         JButton btentrar = new JButton("Entrar");
         lgn.setLayout(null);
-        lgn.setSize(400, 150);
+        
         lgn.setResizable(false);
-        lgn.setVisible(true);
+        
         JCheckBox ver = new JCheckBox("Mostrar contraseña");
         ver.setBounds(50, 110, 150, 30);
         ver.setMnemonic('M');
@@ -52,29 +50,25 @@ public class Loginp {
         lgn.add(new JLabel("Password"));
         JPasswordField jpassword = new JPasswordField();
 
-        lgn.add(jpassword);
-        lgn.setSize(500, 200);
-        lgn.setVisible(true);
+        
+        
 
         jpassword.setEchoChar('#');
         System.out.println(jpassword.getEchoChar());
 
-        mal.setBounds(10, 10, 300, 30);
-        user.setBounds(50, 30, 300, 30);
+        
+        mal.setBounds(50, 30, 300, 30);
         password.setBounds(50, 70, 300, 30);
         btentrar.setBounds(250, 110, 100, 30);
-        btentrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if ((user.getText().equals("trabajador")) && (password.getText().equals("hotel"))) {
-                    ventanaDeCarga ventanaDeCarga = new ventanaDeCarga();
-                    lgn.dispose();
-
-                } else {
-                    mal.setText("MAL");
-                }
+        btentrar.addActionListener((ActionEvent ae) -> {
+            if ((password.getText().equals("a"))) {
+                ventanaDeCarga ventanaDeCarga = new ventanaDeCarga();
+                lgn.dispose();
+                
+            } else {
+                mal.setText("MAL, vuelva a intentarlo");
+                password.setText("");
             }
-
         });
         password.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent fe) {
@@ -93,31 +87,17 @@ public class Loginp {
             }
 
         });
-        user.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent fe) {
-                if (primero2) {
-                    user.setText("");
-                    primero2 = false;
-                }
+        
 
-            }
-
-            @Override
-            public void focusLost(FocusEvent fe) {
-                if (user.getText().equals("")) {
-                    primero2 = true;
-                    user.setText("User");
-                }
-            }
-        });
         lgn.add(ver);
         lgn.add(mal);
-        lgn.add(user);
+        ;
         lgn.add(password);
         lgn.add(btentrar);
         lgn.setDefaultCloseOperation(3);
         lgn.setVisible(true);
+        lgn.add(jpassword);
+        lgn.setSize(500, 200);
 
     }
 
